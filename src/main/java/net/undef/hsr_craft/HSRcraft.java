@@ -1,7 +1,6 @@
 package net.undef.hsr_craft;
 
 import com.mojang.logging.LogUtils;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -12,8 +11,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.undef.hsr_craft.item.ModCreativeModTabs;
+import net.undef.hsr_craft.block.ModBlocks;
 import net.undef.hsr_craft.item.ModItems;
+import net.undef.hsr_craft.menu.ModCreativeModTabs;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -30,8 +30,9 @@ public class HSRcraft{
         //Adds custom menus for the mod in the creative menu tab
         ModCreativeModTabs.register(modEventBus);
 
-        //Ensures the items deferred register is properly registered
+        //Ensures the items/blocks deferred registries work properly
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
@@ -42,7 +43,7 @@ public class HSRcraft{
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
-        // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
+        //(REMOVED TEMPORARILY) Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         //context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
@@ -53,11 +54,11 @@ public class HSRcraft{
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event){
 
-        //Adds items into the combat tab in the creative menu
-        if(event.getTabKey() == CreativeModeTabs.COMBAT){
-            event.accept(ModItems.TRAILBLAZERBAT);
-            event.accept(ModItems.SPARKLEHAMMER);
-        }
+        //(MOVED TO CUSTOM TAB)Adds items into the combat tab in the creative menu
+        //if(event.getTabKey() == CreativeModeTabs.COMBAT){
+        //    event.accept(ModItems.TRAILBLAZERBAT);
+        //    event.accept(ModItems.SPARKLEHAMMER);
+        //}
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

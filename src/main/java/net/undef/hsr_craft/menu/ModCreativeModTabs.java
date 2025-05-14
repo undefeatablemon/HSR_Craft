@@ -1,4 +1,4 @@
-package net.undef.hsr_craft.item;
+package net.undef.hsr_craft.menu;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -8,6 +8,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import net.undef.hsr_craft.HSRcraft;
+import net.undef.hsr_craft.item.ModItems;
 
 public class ModCreativeModTabs {
 
