@@ -12,6 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.undef.hsr_craft.item.ModCreativeModTabs;
 import net.undef.hsr_craft.item.ModItems;
 import org.slf4j.Logger;
 
@@ -25,6 +26,9 @@ public class HSRcraft{
 
     public HSRcraft(FMLJavaModLoadingContext context){
         IEventBus modEventBus = context.getModEventBus();
+
+        //Adds custom menus for the mod in the creative menu tab
+        ModCreativeModTabs.register(modEventBus);
 
         //Ensures the items deferred register is properly registered
         ModItems.register(modEventBus);

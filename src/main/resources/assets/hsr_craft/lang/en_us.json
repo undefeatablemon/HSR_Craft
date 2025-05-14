@@ -1,4 +1,6 @@
 {
   "item.hsr_craft.trailblazer_bat": "Trailblazer's Bat",
-  "item.hsr_craft.sparkle_hammer": "Sparkle's Hammer"
+  "item.hsr_craft.sparkle_hammer": "Sparkle's Hammer",
+
+  "creativetab.hsrcombat_tab": "HSR Craft Combat"
 }

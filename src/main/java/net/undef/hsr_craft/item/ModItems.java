@@ -9,7 +9,7 @@ import net.undef.hsr_craft.HSRcraft;
 
 public class ModItems {
 
-
+    //Creates the registry which contains all items added by the mod
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, HSRcraft.MOD_ID);
 
     //Trailblazer's Bat
