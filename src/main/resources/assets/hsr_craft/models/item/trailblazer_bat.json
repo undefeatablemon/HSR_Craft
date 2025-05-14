@@ -1,11 +1,11 @@
 {
-  "credit": "Made with Blockbench",
-  "texture_size": [32, 32],
-  "textures": {
-    "1": "hsr_craft:item/cap",
-    "3": "hsr_craft:item/batpart",
-    "4": "hsr_craft:item/bathandle"
-  },
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"1": "hsr_craft:item/cap",
+		"3": "hsr_craft:item/batpart",
+		"4": "hsr_craft:item/bathandle"
+	},
 	"elements": [
 		{
 			"from": [7.5, 3.5, 7.25],
@@ -102,6 +102,18 @@
 	"display": {
 		"thirdperson_righthand": {
 			"translation": [-0.55, 0, -0.5]
+		},
+		"thirdperson_lefthand": {
+			"translation": [0.75, 0, 0]
+		},
+		"ground": {
+			"rotation": [0, 0, 88],
+			"translation": [-1.75, 0, 0]
+		},
+		"gui": {
+			"rotation": [0, 0, -45],
+			"translation": [-3.25, -2.75, 0],
+			"scale": [1, 0.75, 0.75]
 		}
 	}
-}  
+}
