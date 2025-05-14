@@ -15,11 +15,19 @@ public class ModCreativeModTabs {
     //Creates the registry which contains all creative menu tabs added by the mod
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, HSRcraft.MOD_ID);
 
-
+    //Creates the HSR Combat tab in the creative menu
     public static final RegistryObject<CreativeModeTab> HSRCOMBAT_TAB = CREATIVE_MODE_TABS.register("hsrcombat_tab", () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.TRAILBLAZERBAT.get())).title(Component.translatable("creativetab.hsrcombat_tab"))
             .displayItems((itemDisplayParameters, output) ->{
+                //Add combat items here
                 output.accept(ModItems.TRAILBLAZERBAT.get());
                 output.accept(ModItems.SPARKLEHAMMER.get());
+            } ).build());
+
+    //(need to replace icon) Creates the HSR Consumables tab in the creative menu
+    public static final RegistryObject<CreativeModeTab> HSRCONSUMABLE_TAB = CREATIVE_MODE_TABS.register("hsrconsumable_tab", () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.TRAILBLAZERBAT.get())).title(Component.translatable("creativetab.hsrconsumable_tab"))
+            .displayItems((itemDisplayParameters, output) ->{
+                //Add consumables here
+                output.accept(ModItems.TRAILBLAZERBAT.get()); //temp
             } ).build());
 
     //Function to register a new tab in the creative mode menu
