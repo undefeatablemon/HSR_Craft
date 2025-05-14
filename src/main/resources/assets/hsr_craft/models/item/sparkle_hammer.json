@@ -1,10 +1,10 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "hsr_craft:item/handle",
-		"1": "hsr_craft:item/middle_hammer",
-		"2": "hsr_craft:item/end_hammer",
-		"particle": "hsr_craft:item/handle"
+		"0": "handle",
+		"1": "middle_hammer",
+		"2": "end_hammer",
+		"particle": "handle"
 	},
 	"elements": [
 		{
@@ -167,6 +167,18 @@
 	"display": {
 		"thirdperson_righthand": {
 			"translation": [-0.5, -12.75, -0.25]
+		},
+		"thirdperson_lefthand": {
+			"translation": [0.5, -14, -0.25]
+		},
+		"ground": {
+			"rotation": [90, 0, 90],
+			"translation": [9.25, 2, 0]
+		},
+		"gui": {
+			"rotation": [94.66, 45.66, -93.36],
+			"translation": [-3.75, -4, 0],
+			"scale": [1, 0.5, 0.5]
 		}
 	}
 }
