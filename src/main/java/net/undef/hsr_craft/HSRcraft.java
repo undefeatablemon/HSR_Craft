@@ -48,8 +48,11 @@ public class HSRcraft{
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event){
+
+        //Adds items into the combat tab in the creative menu
         if(event.getTabKey() == CreativeModeTabs.COMBAT){
-            event.accept(ModItems.TRAILBLAZERBAT); //Adds items into the ingredients tab in the creative menu
+            event.accept(ModItems.TRAILBLAZERBAT);
+            event.accept(ModItems.SPARKLEHAMMER);
         }
     }
 
