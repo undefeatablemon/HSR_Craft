@@ -1,10 +1,10 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "block/handle",
-		"1": "block/middle_hammer",
-		"2": "block/end_hammer",
-		"particle": "block/handle"
+		"0": "hsr_craft:item/handle",
+		"1": "hsr_craft:item/middle_hammer",
+		"2": "hsr_craft:item/end_hammer",
+		"particle": "hsr_craft:item/handle"
 	},
 	"elements": [
 		{
