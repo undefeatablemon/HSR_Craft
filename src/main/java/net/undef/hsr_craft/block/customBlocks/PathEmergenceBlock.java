@@ -24,8 +24,8 @@ public class PathEmergenceBlock extends Block {
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
 
-        if(pLevel.toString() == "ClientLevel" && pHand.toString() == "MAIN_HAND"){
-            pPlayer.sendSystemMessage(Component.literal("Finality is the best path"));
+        if(pLevel.isClientSide && pHand.toString() == "MAIN_HAND"){
+            pPlayer.sendSystemMessage(Component.literal("Finality is the best path\n No jokes, just pure facts"));
         }
 
         return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
