@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "hsr_craft:path_emergence_block"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "hsr_craft:blocks/path_emergence_block"
+}
