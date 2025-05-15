@@ -8,6 +8,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import net.undef.hsr_craft.HSRcraft;
+import net.undef.hsr_craft.block.ModBlocks;
 import net.undef.hsr_craft.item.ModItems;
 
 public class ModCreativeModTabs {
@@ -28,6 +29,13 @@ public class ModCreativeModTabs {
             .displayItems((itemDisplayParameters, output) ->{
                 //Add consumables here
                 output.accept(ModItems.TRAILBLAZERBAT.get()); //temp
+            } ).build());
+
+    //Creates the HSR Blocks tab in the creative menu
+    public static final RegistryObject<CreativeModeTab> HSRBLOCK_TAB = CREATIVE_MODE_TABS.register("hsrblock_tab", () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.PATHEMERGENCE_BLOCK.get())).title(Component.translatable("creativetab.hsrblock_tab"))
+            .displayItems((itemDisplayParameters, output) ->{
+                //Add blocks here
+                output.accept(ModBlocks.PATHEMERGENCE_BLOCK.get());
             } ).build());
 
     //Function to register a new tab in the creative mode menu

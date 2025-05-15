@@ -2,6 +2,8 @@
   "item.hsr_craft.trailblazer_bat": "Trailblazer's Bat",
   "item.hsr_craft.sparkle_hammer": "Sparkle's Hammer",
 
+  "block.hsr_craft.path_emergence_block": "Path Emergence Block",
+
   "creativetab.hsrcombat_tab": "HSR Craft Combat",
   "creativetab.hsrconsumable_tab": "HSR Craft Consumables"
 }
