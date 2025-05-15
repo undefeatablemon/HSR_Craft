@@ -17,7 +17,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     //Creates json files for blockstates
     @Override
     protected void registerStatesAndModels() {
-        blockWithItem(ModBlocks.PATHEMERGENCE_BLOCK);
+
     }
 
     //Method to make json files for a simple blockstate
