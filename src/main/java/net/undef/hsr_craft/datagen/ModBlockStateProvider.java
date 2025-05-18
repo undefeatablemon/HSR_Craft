@@ -18,6 +18,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
 
+        //simpleBlockWithItem(ModBlocks.PATHEMERGENCE_BLOCK.get(), modLoc("block/path_emergence_block"));
     }
 
     //Method to make json files for a simple blockstate

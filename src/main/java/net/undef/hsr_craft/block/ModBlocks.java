@@ -24,7 +24,7 @@ public class ModBlocks {
     //public static final RegistryObject<Block> EXAMPLE_BLOCK = registerBlock("example_block", () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
 
     //Registers the Path Emergence block
-    public static final RegistryObject<Block> PATHEMERGENCE_BLOCK = registerBlock("path_emergence_block", () -> new PathEmergenceBlock(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN)));
+    public static final RegistryObject<Block> PATHEMERGENCE_BLOCK = registerBlock("path_emergence_block", () -> new PathEmergenceBlock(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN).noOcclusion()));
 
     //Registers a block in both the block and item deferred registry
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block){
