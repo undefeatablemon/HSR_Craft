@@ -9,21 +9,29 @@ import java.util.function.Supplier;
 public class PathDataSynchronization{
 
     private final String path;
+    private final int pathLevel;
     private final String character;
 
-    public PathDataSynchronization(String path, String character){
-        this.path = path;
-        this.character = character;
+    public PathDataSynchronization(String data){
+        String[] array = data.split(" ");
+
+
+        this.path = array[0];
+        this.pathLevel = Integer.parseInt(array[1]);
+        this.character = array[2];
     }
 
-    public PathDataSynchronization(FriendlyByteBuf path, FriendlyByteBuf character){
-        this.path = path.readUtf();
-        this.character = character.readUtf();
+    public PathDataSynchronization(FriendlyByteBuf data){
+        String[] array = data.readUtf().split(" ");
+
+
+        this.path = array[0];
+        this.pathLevel = Integer.parseInt(array[1]);
+        this.character = array[2];
     }
 
-    public void toBytes(FriendlyByteBuf path, FriendlyByteBuf character){
-        path.writeUtf(this.path);
-        character.writeUtf(this.character);
+    public void toBytes(FriendlyByteBuf data){
+        data.writeUtf(this.path + " " + this.pathLevel + " " + this.character);
     }
 
     public boolean handle(Supplier<NetworkEvent.Context> supplier){
@@ -31,6 +39,7 @@ public class PathDataSynchronization{
         context.enqueueWork(() ->{
             //To client
             ClientPathData.setPlayerPath(this.path);
+            ClientPathData.setPlayerPathLevel(this.pathLevel);
             ClientPathData.setPlayerCharacter(this.character);
         });
         return true;

@@ -14,6 +14,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.undef.hsr_craft.block.ModBlocks;
 import net.undef.hsr_craft.item.ModItems;
 import net.undef.hsr_craft.menu.ModCreativeModTabs;
+import net.undef.hsr_craft.networking.ClientServerCommunications;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -49,6 +50,10 @@ public class HSRcraft{
 
     private void commonSetup(final FMLCommonSetupEvent event){
 
+        //Registers various classes needed during server startup
+        event.enqueueWork(() -> {
+            ClientServerCommunications.register();
+        });
     }
 
     // Add the example block item to the building blocks tab
