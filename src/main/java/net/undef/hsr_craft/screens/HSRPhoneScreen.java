@@ -16,14 +16,17 @@ public class HSRPhoneScreen extends AbstractContainerScreen<HSRPhoneMenu>{
 
     //Locations for all textures used in the screen
     private static final ResourceLocation GUI_TEXTURE = new ResourceLocation(HSRcraft.MOD_ID, "textures/gui/hsr_phone_gui.png");
-    private static final ResourceLocation PATH_BUTTON_LOCATION = new ResourceLocation("textures/gui/path_button.png");
-    private static final ResourceLocation CHARACTER_BUTTON_LOCATION = new ResourceLocation("textures/gui/character_button.png");
-    private static final ResourceLocation INVENTORY_BUTTON_LOCATION = new ResourceLocation("textures/gui/inventory_button.png");
-    private static final ResourceLocation PARTY_BUTTON_LOCATION = new ResourceLocation("textures/gui/party_button.png");
+    private static final ResourceLocation PATH_BUTTON_LOCATION = new ResourceLocation(HSRcraft.MOD_ID, "textures/gui/path_button.png");
+    private static final ResourceLocation CHARACTER_BUTTON_LOCATION = new ResourceLocation(HSRcraft.MOD_ID, "textures/gui/character_button.png");
+    private static final ResourceLocation INVENTORY_BUTTON_LOCATION = new ResourceLocation(HSRcraft.MOD_ID, "textures/gui/inventory_button.png");
+    private static final ResourceLocation PARTY_BUTTON_LOCATION = new ResourceLocation(HSRcraft.MOD_ID, "textures/gui/party_button.png");
 
     //Dimensions of the main image texture used for the screen
     private static final int IMAGE_WIDTH = 154;
     private static final int IMAGE_HEIGHT = 256;
+
+    //Dimension of buttons
+    private static final int BUTTON_WIDTH = 27; //Pixel length on screen
 
     //Declaration of any widgets being added and their positions on the screen
     private ImageButton pathButton;
@@ -54,10 +57,15 @@ public class HSRPhoneScreen extends AbstractContainerScreen<HSRPhoneMenu>{
 
         int x = (width - IMAGE_WIDTH)/2;
         int y = (height - IMAGE_HEIGHT)/10;
-        this.pathButton = this.addRenderableWidget(new ImageButton(x + B1X, y + B1Y, 27, 27, 0, 0, 0, PATH_BUTTON_LOCATION, (pathButton) -> {}));
-        this.characterButton = this.addRenderableWidget(new ImageButton(x + B2X, y + B2Y, 27, 27, 0, 0, 0, CHARACTER_BUTTON_LOCATION, (pathButton) -> {}));
-        this.inventoryButton = this.addRenderableWidget(new ImageButton(x + B3X, y + B3Y, 27, 27, 0, 0, 0, INVENTORY_BUTTON_LOCATION, (pathButton) -> {}));
-        this.partyButton = this.addRenderableWidget(new ImageButton(x + B4X, y + B4Y, 27, 27, 0, 0, 0, PARTY_BUTTON_LOCATION, (pathButton) -> {}));
+        this.pathButton = this.addRenderableWidget(new ImageButton(x + B1X, y + B1Y, BUTTON_WIDTH, BUTTON_WIDTH, 0, 0, 0, PATH_BUTTON_LOCATION, (pathButton) -> {}));
+        //this.characterButton = this.addRenderableWidget(new ImageButton(x + B2X, y + B2Y, BUTTON_WIDTH, BUTTON_WIDTH, 0, 0, 0, CHARACTER_BUTTON_LOCATION, (pathButton) -> {}));
+        this.inventoryButton = this.addRenderableWidget(new ImageButton(x + B3X, y + B3Y, BUTTON_WIDTH, BUTTON_WIDTH, 0, 0, 0, INVENTORY_BUTTON_LOCATION, (pathButton) -> {}));
+        this.partyButton = this.addRenderableWidget(new ImageButton(x + B4X, y + B4Y, BUTTON_WIDTH, BUTTON_WIDTH, 0, 0, 0, PARTY_BUTTON_LOCATION, (pathButton) -> {}));
+
+        this.pathButton = this.addRenderableWidget(new ImageButton(x + B1X, y + B1Y, BUTTON_WIDTH, BUTTON_WIDTH, 0, 0, 0, PATH_BUTTON_LOCATION, BUTTON_WIDTH, BUTTON_WIDTH, (pathButton) -> {}));
+        this.characterButton = this.addRenderableWidget(new ImageButton(x + B2X, y + B2Y, BUTTON_WIDTH, BUTTON_WIDTH, 0, 0, 0, CHARACTER_BUTTON_LOCATION, BUTTON_WIDTH, BUTTON_WIDTH, (pathButton) -> {}));
+        this.inventoryButton = this.addRenderableWidget(new ImageButton(x + B3X, y + B3Y, BUTTON_WIDTH, BUTTON_WIDTH, 0, 0, 0, INVENTORY_BUTTON_LOCATION, BUTTON_WIDTH, BUTTON_WIDTH, (pathButton) -> {}));
+        this.partyButton = this.addRenderableWidget(new ImageButton(x + B4X, y + B4Y, BUTTON_WIDTH, BUTTON_WIDTH, 0, 0, 0, PARTY_BUTTON_LOCATION, BUTTON_WIDTH, BUTTON_WIDTH, (pathButton) -> {}));
     }
 
     @Override
@@ -65,7 +73,6 @@ public class HSRPhoneScreen extends AbstractContainerScreen<HSRPhoneMenu>{
         renderBackground(pGuiGraphics);
         super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
         renderTooltip(pGuiGraphics, pMouseX, pMouseY);
-
     }
 
     @Override
