@@ -1,6 +1,7 @@
 package net.undef.hsr_craft;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -15,6 +16,8 @@ import net.undef.hsr_craft.block.ModBlocks;
 import net.undef.hsr_craft.item.ModItems;
 import net.undef.hsr_craft.menu.ModCreativeModTabs;
 import net.undef.hsr_craft.networking.ClientServerCommunications;
+import net.undef.hsr_craft.screens.HSRPhoneScreen;
+import net.undef.hsr_craft.screens.ModMenuTypes;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -28,12 +31,15 @@ public class HSRcraft{
     public HSRcraft(FMLJavaModLoadingContext context){
         IEventBus modEventBus = context.getModEventBus();
 
-        //Adds custom menus for the mod in the creative menu tab
+        //Registers the deferred register for mod creative mode tabs
         ModCreativeModTabs.register(modEventBus);
 
-        //Ensures the items/blocks deferred registries work properly
+        //Registers the deferred register for mod items and blocks
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+
+        //Registers the deferred register for mod menu types
+        ModMenuTypes.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
@@ -78,6 +84,8 @@ public class HSRcraft{
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event){
 
+
+            MenuScreens.register(ModMenuTypes.HSR_PHONE_MENU.get(), HSRPhoneScreen::new);
         }
     }
 }

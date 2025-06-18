@@ -1,9 +1,9 @@
 {
   "item.hsr_craft.trailblazer_bat": "Trailblazer's Bat",
   "item.hsr_craft.sparkle_hammer": "Sparkle's Hammer",
-
-  "block.hsr_craft.path_emergence_block": "Path Emergence Block",
+  "item.hsr_craft.hsr_phone": "Astral Express Phone",
 
   "creativetab.hsrcombat_tab": "HSR Craft Combat",
-  "creativetab.hsrconsumable_tab": "HSR Craft Consumables"
+  "creativetab.hsrconsumable_tab": "HSR Craft Consumables",
+  "creativetab.hsrblock_tab": "HSR Craft Blocks"
 }

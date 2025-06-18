@@ -21,7 +21,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
 
-        //All blocks needing a diamond tool to be mined are added here.
+        /*//All blocks needing a diamond tool to be mined are added here.
         this.tag(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(
                         ModBlocks.PATHEMERGENCE_BLOCK.get()
@@ -31,6 +31,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(
                         ModBlocks.PATHEMERGENCE_BLOCK.get()
-                );
+                );*/
     }
 }

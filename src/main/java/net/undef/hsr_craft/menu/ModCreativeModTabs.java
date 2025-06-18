@@ -22,6 +22,7 @@ public class ModCreativeModTabs {
                 //Add combat items here
                 output.accept(ModItems.TRAILBLAZERBAT.get());
                 output.accept(ModItems.SPARKLEHAMMER.get());
+                output.accept(ModItems.HSRPHONE.get());
             } ).build());
 
     //(need to replace icon) Creates the HSR Consumables tab in the creative menu
@@ -32,10 +33,10 @@ public class ModCreativeModTabs {
             } ).build());
 
     //Creates the HSR Blocks tab in the creative menu
-    public static final RegistryObject<CreativeModeTab> HSRBLOCK_TAB = CREATIVE_MODE_TABS.register("hsrblock_tab", () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.PATHEMERGENCE_BLOCK.get())).title(Component.translatable("creativetab.hsrblock_tab"))
+    public static final RegistryObject<CreativeModeTab> HSRBLOCK_TAB = CREATIVE_MODE_TABS.register("hsrblock_tab", () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.TRAILBLAZERBAT.get())).title(Component.translatable("creativetab.hsrblock_tab"))
             .displayItems((itemDisplayParameters, output) ->{
                 //Add blocks here
-                output.accept(ModBlocks.PATHEMERGENCE_BLOCK.get());
+                output.accept(ModItems.TRAILBLAZERBAT.get());
             } ).build());
 
     //Function to register a new tab in the creative mode menu

@@ -3,6 +3,7 @@ package net.undef.hsr_craft.datagen;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 import net.undef.hsr_craft.HSRcraft;
@@ -19,6 +20,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
 
         //simpleBlockWithItem(ModBlocks.PATHEMERGENCE_BLOCK.get(), modLoc("block/path_emergence_block"));
+        //simpleBlock(ModBlocks.PATHEMERGENCE_BLOCK.get(), new ModelFile.UncheckedModelFile(modLoc("block/path_emergence_block")));
     }
 
     //Method to make json files for a simple blockstate

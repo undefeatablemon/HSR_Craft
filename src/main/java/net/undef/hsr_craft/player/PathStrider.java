@@ -1,8 +1,14 @@
 package net.undef.hsr_craft.player;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.undef.hsr_craft.screens.HSRPhoneMenu;
+import org.jetbrains.annotations.Nullable;
 
 public class PathStrider{
 
@@ -10,9 +16,8 @@ public class PathStrider{
     int pathLevel = 0;
     String character = "None";
 
-    public PathStrider() {
-        //this.player.sendSystemMessage(Component.literal("Succesfully became the path strider of abundance"));
-        //this.player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(30); //temp
+    public PathStrider(){
+        //Empty for now
     }
 
     public void setPath(String path){
@@ -61,9 +66,82 @@ public class PathStrider{
         setCharacter(nbt.getString("character"));
     }
 
-    public void testMethod(Player player){
-        if(getPath().equals("abundance")) {
-            player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(30); //temp
+    //Gives the player any passive stat boosts associated with their path
+    public void pathPassive(Player player){
+        switch (getPath()){
+            case "destruction":
+                //Destruction code
+                break;
+
+            case "hunt":
+                //Hunt code
+                break;
+
+            case "erudition":
+                //Erudition code
+                break;
+
+            case "harmony":
+                //Harmony code
+                break;
+
+            case "nihility":
+                //Nihility code
+                break;
+
+            case "preservation":
+                //Preservation code
+                break;
+
+            case "abundance":
+                //Abundance code
+                player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(30); //temp
+                player.heal(10); //temp
+                break;
+
+            case "remembrance":
+                //Remembrance code
+                break;
+
+            case "trailblaze":
+                //Trailblaze code
+                break;
+
+            case "elation":
+                //Elation code
+                break;
+
+            case "voracity":
+                //Voracity code
+                break;
+
+            case "beauty":
+                //Beauty code
+                break;
+
+            case "permanence":
+                //Permanence code
+                break;
+
+            case "propagation":
+                //Propagation code
+                break;
+
+            case "enigmata":
+                //Enigmata code
+                break;
+
+            case "equilibrium":
+                //Equilibrium code
+                break;
+
+            case "finality":
+                //Finality code
+                break;
         }
+
+        /*if(getPath().equals("abundance")) {
+            player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(30); //temp
+        }*/
     }
 }

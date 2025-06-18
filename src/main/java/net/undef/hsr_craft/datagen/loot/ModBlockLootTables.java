@@ -19,9 +19,8 @@ public class ModBlockLootTables extends BlockLootSubProvider{
 
     @Override
     protected void generate() {
+        //Dictates what blocks drop when broken
 
-        //Makes the path emergence block drop itself when mined
-        this.dropSelf(ModBlocks.PATHEMERGENCE_BLOCK.get());
     }
 
     //Takes every block in the deferrred registry and adds it to the loot table json

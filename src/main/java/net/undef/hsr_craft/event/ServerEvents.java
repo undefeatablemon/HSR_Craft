@@ -2,20 +2,16 @@ package net.undef.hsr_craft.event;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 import net.undef.hsr_craft.HSRcraft;
-import net.undef.hsr_craft.networking.ClientServerCommunications;
-import net.undef.hsr_craft.networking.packet.PathDataSynchronization;
 import net.undef.hsr_craft.player.PathStrider;
 import net.undef.hsr_craft.player.PathStriderProvider;
 
@@ -34,25 +30,13 @@ public class ServerEvents{
     //Runs when a player is cloned (respawn or entering new dimension)
     @SubscribeEvent
     public static void onPlayerCloned(PlayerEvent.Clone event){
-
         event.getOriginal().reviveCaps();
         event.getOriginal().getCapability(PathStriderProvider.PATH_STRIDER).ifPresent(oldStore -> {
-
             event.getEntity().getCapability(PathStriderProvider.PATH_STRIDER).ifPresent(newStore -> {
 
-                //Restores previous capability
+                //Restores previous capability and passive stat buffs
                 newStore.copyFrom(oldStore);
-
-                //newStore.testMethod(event.getEntity());
-
-                //Updates path strider data
-                    /*event.getEntity().getCapability(PathStriderProvider.PATH_STRIDER).ifPresent(pathStrider -> {
-                        pathStrider.setPath(oldStore.getPath());
-                        pathStrider.setPathLevel(oldStore.getPathLevel());
-                        pathStrider.setCharacter(oldStore.getCharacter());
-
-                        pathStrider.testMethod(event.getEntity());
-                    });*/
+                newStore.pathPassive(event.getEntity());
             });
         });
         event.getOriginal().invalidateCaps();
@@ -68,11 +52,11 @@ public class ServerEvents{
     public static void onPlayerTick(TickEvent.PlayerTickEvent event){
         if(event.side == LogicalSide.SERVER){
             event.player.getCapability(PathStriderProvider.PATH_STRIDER).ifPresent(pathStrider -> {
-                if(event.player.getRandom().nextFloat() < 0.005f){   //On average every 10s
+                /*if(event.player.getRandom().nextFloat() < 0.005f){   //On average every 10s
                     event.player.sendSystemMessage(Component.literal(pathStrider.getPath()));
                     //pathStrider.setPath("abundance");
-                    pathStrider.testMethod(event.player);
-                }
+                    pathStrider.pathPassive(event.player);
+                }*/
             });
         }
     }
