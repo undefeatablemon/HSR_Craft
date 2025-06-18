@@ -40,6 +40,18 @@ public class HSRPhoneMenu extends AbstractContainerMenu {
     }
 
     public void pathButtonClicked(){
-        player.sendSystemMessage(Component.literal("Path Button Succesfully Pressed"));
+        player.sendSystemMessage(Component.literal("Path Button is currently WIP"));
+    }
+
+    public void characterButtonClicked(){
+        player.sendSystemMessage(Component.literal("Character Button is currently WIP"));
+    }
+
+    public void inventoryButtonClicked(){
+        player.sendSystemMessage(Component.literal("Inventory Button is currently WIP"));
+    }
+
+    public void partyButtonClicked(){
+        player.sendSystemMessage(Component.literal("Party Button is currently WIP"));
     }
 }

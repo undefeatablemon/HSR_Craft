@@ -81,10 +81,23 @@ public class HSRPhoneScreen extends AbstractContainerScreen<HSRPhoneMenu>{
     }
 
     public boolean mouseClicked(double pMouseX, double pMouseY, int pButton) {
-        if (this.pathButton.mouseClicked(pMouseX, pMouseY, pButton)) {
+        if(this.pathButton.mouseClicked(pMouseX, pMouseY, pButton)){
             this.menu.pathButtonClicked();
             return true;
-        } else {
+        }
+        else if(this.characterButton.mouseClicked(pMouseX, pMouseY, pButton)){
+            this.menu.characterButtonClicked();
+            return true;
+        }
+        else if(this.inventoryButton.mouseClicked(pMouseX, pMouseY, pButton)){
+            this.menu.inventoryButtonClicked();
+            return true;
+        }
+        else if(this.partyButton.mouseClicked(pMouseX, pMouseY, pButton)){
+            this.menu.partyButtonClicked();
+            return true;
+        }
+        else{
             return false;
         }
     }
