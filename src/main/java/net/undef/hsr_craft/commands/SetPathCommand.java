@@ -5,6 +5,7 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
@@ -13,10 +14,13 @@ import net.minecraft.world.entity.player.Player;
 import net.undef.hsr_craft.player.PathStrider;
 import net.undef.hsr_craft.player.PathStriderProvider;
 
+import java.nio.file.Path;
 import java.util.Arrays;
-import java.util.Objects;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class SetPathCommand{
+
+    private static final SimpleCommandExceptionType ERROR_INVALID_PATH = new SimpleCommandExceptionType(Component.literal("Invalid Path"));
 
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher){
 
@@ -33,23 +37,21 @@ public class SetPathCommand{
     private static int setPath(CommandContext<CommandSourceStack> commandSourceStackCommandContext) throws CommandSyntaxException{
 
         Player player = EntityArgument.getPlayer(commandSourceStackCommandContext, "Target");
+        AtomicReference<PathStrider> pathstrider = new AtomicReference<>();
+        player.getCapability(PathStriderProvider.PATH_STRIDER).ifPresent(pathstrider::set);
 
-        player.getCapability(PathStriderProvider.PATH_STRIDER).ifPresent(pathStrider -> {
-            if(Arrays.asList(PathStrider.validPaths).contains(StringArgumentType.getString(commandSourceStackCommandContext, "Path"))) {
+        if(Arrays.asList(PathStrider.validPaths).contains(StringArgumentType.getString(commandSourceStackCommandContext, "Path"))) {
 
-                pathStrider.removePathPassive(player);
-                pathStrider.setPath(StringArgumentType.getString(commandSourceStackCommandContext, "Path"));
+            pathstrider.get().changePath(player, StringArgumentType.getString(commandSourceStackCommandContext, "Path"));
 
-                if(!StringArgumentType.getString(commandSourceStackCommandContext, "Path").equals("none")) {
-                    pathStrider.setPathLevel(IntegerArgumentType.getInteger(commandSourceStackCommandContext, "Level"));
-                }
-
-                pathStrider.pathPassive(player);
+            if(!StringArgumentType.getString(commandSourceStackCommandContext, "Path").equals("none")) {
+                pathstrider.get().changePathLevel(player, IntegerArgumentType.getInteger(commandSourceStackCommandContext, "Level"));
             }
-            else{
-                player.sendSystemMessage(Component.literal("Invalid Path"));
-            }
-        });
-        return 1;
+
+            return 1;
+        }
+        else{
+            throw ERROR_INVALID_PATH.create();
+        }
     }
 }

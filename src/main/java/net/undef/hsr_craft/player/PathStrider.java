@@ -1,15 +1,8 @@
 package net.undef.hsr_craft.player;
 
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.MenuProvider;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.undef.hsr_craft.screens.HSRPhoneMenu;
-import org.jetbrains.annotations.Nullable;
 
 public class PathStrider{
 
@@ -72,8 +65,28 @@ public class PathStrider{
         setCharacter(nbt.getString("character"));
     }
 
+    //Change path
+    public void changePath(Player player, String newPath){
+        deactivatePathPassive(player);
+        setPath(newPath);
+        activatePathPassive(player);
+    }
+
+    //Change level
+    public void changePathLevel(Player player, int newLevel){
+        deactivatePathPassive(player);
+        setPathLevel(newLevel);
+        activatePathPassive(player);
+    }
+
+    //Reloads passive path buffs
+    public void reloadPathPassive(Player player){
+        deactivatePathPassive(player);
+        activatePathPassive(player);
+    }
+
     //Gives the player any passive stat boosts associated with their path
-    public void pathPassive(Player player){
+    public void activatePathPassive(Player player){
         switch (getPath()){
             case "destruction":
                 //Destruction code
@@ -147,7 +160,7 @@ public class PathStrider{
         }
     }
 
-    public void removePathPassive(Player player){
+    public void deactivatePathPassive(Player player){
         switch (getPath()){
             case "destruction":
                 //Destruction code

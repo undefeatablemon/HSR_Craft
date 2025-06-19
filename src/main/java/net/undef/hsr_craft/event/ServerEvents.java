@@ -1,6 +1,5 @@
 package net.undef.hsr_craft.event;
 
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -36,7 +35,7 @@ public class ServerEvents{
 
                 //Restores previous capability and passive stat buffs
                 newStore.copyFrom(oldStore);
-                newStore.pathPassive(event.getEntity());
+                newStore.activatePathPassive(event.getEntity());
             });
         });
         event.getOriginal().invalidateCaps();
