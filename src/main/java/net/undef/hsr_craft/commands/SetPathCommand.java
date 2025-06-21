@@ -27,7 +27,7 @@ public class SetPathCommand{
         dispatcher.register(Commands.literal("setPath")
                 .requires(commandSourceStack -> commandSourceStack.hasPermission(3))
                 .then(Commands.argument("Path", StringArgumentType.string())
-                .then(Commands.argument("Level", IntegerArgumentType.integer(0, 14))
+                .then(Commands.argument("Level", IntegerArgumentType.integer(0, 10))
                 .then(Commands.argument("Target", EntityArgument.player())
                 .executes(SetPathCommand::setPath)
 
