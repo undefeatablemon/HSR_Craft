@@ -10,7 +10,9 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.undef.hsr_craft.HSRcraft;
+import net.undef.hsr_craft.networking.ClientServerCommunications;
 import net.undef.hsr_craft.player.PathStrider;
 import net.undef.hsr_craft.player.PathStriderProvider;
 
@@ -22,6 +24,7 @@ public class ServerEvents{
         if(event.getObject() instanceof Player){
             if(!event.getObject().getCapability(PathStriderProvider.PATH_STRIDER).isPresent()){
                 event.addCapability(new ResourceLocation(HSRcraft.MOD_ID, "properties"), new PathStriderProvider());
+
             }
         }
     }

@@ -40,7 +40,7 @@ public class PathStriderProvider implements ICapabilityProvider, INBTSerializabl
     }
 
     @Override
-    public void deserializeNBT(CompoundTag nbt) {
+    public void deserializeNBT(CompoundTag nbt){
         createPathStrider().loadNBTData(nbt);
     }
 }

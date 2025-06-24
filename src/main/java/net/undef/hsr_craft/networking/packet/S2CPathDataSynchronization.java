@@ -6,38 +6,34 @@ import net.undef.hsr_craft.client.ClientPathData;
 
 import java.util.function.Supplier;
 
-public class PathDataSynchronization{
+public class S2CPathDataSynchronization {
 
     private final String path;
-    private final int pathLevel;
+    private final byte pathLevel;
     private final String character;
 
-    public PathDataSynchronization(String data){
-        String[] array = data.split(" ");
+    public S2CPathDataSynchronization(String path, byte pathLevel, String character){
 
-
-        this.path = array[0];
-        this.pathLevel = Integer.parseInt(array[1]);
-        this.character = array[2];
+        this.path = path;
+        this.pathLevel = pathLevel;
+        this.character = character;
     }
 
-    public PathDataSynchronization(FriendlyByteBuf data){
-        String[] array = data.readUtf().split(" ");
-
-
-        this.path = array[0];
-        this.pathLevel = Integer.parseInt(array[1]);
-        this.character = array[2];
+    public S2CPathDataSynchronization(FriendlyByteBuf data){
+        this(data.readUtf(), data.readByte(), data.readUtf());
     }
 
-    public void toBytes(FriendlyByteBuf data){
-        data.writeUtf(this.path + " " + this.pathLevel + " " + this.character);
+    public void encode(FriendlyByteBuf data){
+        data.writeUtf(this.path);
+        data.writeByte(this.pathLevel);
+        data.writeUtf(this.character);
     }
 
     public boolean handle(Supplier<NetworkEvent.Context> supplier){
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() ->{
-            //To client
+            //Everything here is client side
+            //This allows us to create a ClientPathData class for each client
             ClientPathData.setPlayerPath(this.path);
             ClientPathData.setPlayerPathLevel(this.pathLevel);
             ClientPathData.setPlayerCharacter(this.character);

@@ -1,8 +1,11 @@
 package net.undef.hsr_craft.player;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.undef.hsr_craft.networking.ClientServerCommunications;
+import net.undef.hsr_craft.networking.packet.S2CPathDataSynchronization;
 
 public class PathStrider{
 
@@ -70,6 +73,7 @@ public class PathStrider{
         deactivatePathPassive(player);
         setPath(newPath);
         activatePathPassive(player);
+        ClientServerCommunications.sendToClient(new S2CPathDataSynchronization(this.getPath(), (byte) this.getPathLevel(), this.getCharacter()), (ServerPlayer) player);
     }
 
     //Change level
@@ -77,6 +81,7 @@ public class PathStrider{
         deactivatePathPassive(player);
         setPathLevel(newLevel);
         activatePathPassive(player);
+        ClientServerCommunications.sendToClient(new S2CPathDataSynchronization(this.getPath(), (byte) this.getPathLevel(), this.getCharacter()), (ServerPlayer) player);
     }
 
     //Reloads passive path buffs
