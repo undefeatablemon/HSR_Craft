@@ -1,29 +1,32 @@
 package net.undef.hsr_craft.networking.packet;
 
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-public class PlayerSkill {
+public class C2SPlayerSkill {
 
-    public PlayerSkill(){
-
-    }
-
-    public PlayerSkill(FriendlyByteBuf buf){
+    public C2SPlayerSkill(){
 
     }
 
-    public void toBytes(FriendlyByteBuf buf){
+    public C2SPlayerSkill(FriendlyByteBuf buf){
+
+    }
+
+    public void encode(FriendlyByteBuf buf){
 
     }
 
     public boolean handle(Supplier<NetworkEvent.Context> supplier){
         NetworkEvent.Context context = supplier.get();
+        ServerPlayer player = context.getSender();
         context.enqueueWork(() -> {
             //This code runs in the server
-
+            player.sendSystemMessage(Component.literal("Skill is WIP"));
         });
         return true;
     }

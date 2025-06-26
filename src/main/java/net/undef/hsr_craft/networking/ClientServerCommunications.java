@@ -7,7 +7,7 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 import net.undef.hsr_craft.HSRcraft;
-import net.undef.hsr_craft.networking.packet.S2CPathDataSynchronization;
+import net.undef.hsr_craft.networking.packet.*;
 
 public class ClientServerCommunications{
 
@@ -22,10 +22,34 @@ public class ClientServerCommunications{
     //Creates the channel that communicates between server and client
     public static void register(){
 
-        INSTANCE.messageBuilder(S2CPathDataSynchronization.class, id(), NetworkDirection.PLAY_TO_CLIENT)
-                .encoder(S2CPathDataSynchronization::encode)
-                .decoder(S2CPathDataSynchronization::new)
-                .consumerMainThread(S2CPathDataSynchronization::handle)
+        INSTANCE.messageBuilder(C2SPlayerBasicAttack.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .encoder(C2SPlayerBasicAttack::encode)
+                .decoder(C2SPlayerBasicAttack::new)
+                .consumerMainThread(C2SPlayerBasicAttack::handle)
+                .add();
+
+        INSTANCE.messageBuilder(C2SPlayerPathSkill.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .encoder(C2SPlayerPathSkill::encode)
+                .decoder(C2SPlayerPathSkill::new)
+                .consumerMainThread(C2SPlayerPathSkill::handle)
+                .add();
+
+        INSTANCE.messageBuilder(C2SPlayerSkill.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .encoder(C2SPlayerSkill::encode)
+                .decoder(C2SPlayerSkill::new)
+                .consumerMainThread(C2SPlayerSkill::handle)
+                .add();
+
+        INSTANCE.messageBuilder(C2SPlayerTechnique.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .encoder(C2SPlayerTechnique::encode)
+                .decoder(C2SPlayerTechnique::new)
+                .consumerMainThread(C2SPlayerTechnique::handle)
+                .add();
+
+        INSTANCE.messageBuilder(C2SPlayerUltimate.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .encoder(C2SPlayerUltimate::encode)
+                .decoder(C2SPlayerUltimate::new)
+                .consumerMainThread(C2SPlayerUltimate::handle)
                 .add();
     }
 

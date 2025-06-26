@@ -17,7 +17,7 @@ public class CommandsRegister{
     public static void registerServerCommands(RegisterCommandsEvent event){ //Can be called on console
 
         SetPathCommand.register(event.getDispatcher()); //Registers the setPath command
-        ClientPathDataTestCommand.register(event.getDispatcher());
+        GetPathCommand.register(event.getDispatcher());
     }
 
     @SubscribeEvent

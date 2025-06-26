@@ -3,6 +3,7 @@ package net.undef.hsr_craft;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -14,6 +15,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.undef.hsr_craft.block.ModBlocks;
+import net.undef.hsr_craft.client.KeyBindings;
 import net.undef.hsr_craft.item.ModItems;
 import net.undef.hsr_craft.menu.ModCreativeModTabs;
 import net.undef.hsr_craft.networking.ClientServerCommunications;
@@ -88,6 +90,16 @@ public class HSRcraft{
         public static void onClientSetup(FMLClientSetupEvent event){
 
             MenuScreens.register(ModMenuTypes.HSR_PHONE_MENU.get(), HSRPhoneScreen::new);
+        }
+
+        @SubscribeEvent
+        public static void onKeyRegister(RegisterKeyMappingsEvent event){
+            //Register keybindings here
+            event.register(KeyBindings.BASIC_ATTACK_KEY);
+            event.register(KeyBindings.PATH_SKILL_KEY);
+            event.register(KeyBindings.SKILL_KEY);
+            event.register(KeyBindings.TECHNIQUE_KEY);
+            event.register(KeyBindings.ULTIMATE_KEY);
         }
     }
 }

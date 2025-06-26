@@ -1,18 +1,16 @@
 package net.undef.hsr_craft.event;
 
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.undef.hsr_craft.HSRcraft;
-import net.undef.hsr_craft.networking.ClientServerCommunications;
 import net.undef.hsr_craft.player.PathStrider;
 import net.undef.hsr_craft.player.PathStriderProvider;
 
@@ -25,6 +23,9 @@ public class ServerEvents{
             if(!event.getObject().getCapability(PathStriderProvider.PATH_STRIDER).isPresent()){
                 event.addCapability(new ResourceLocation(HSRcraft.MOD_ID, "properties"), new PathStriderProvider());
 
+                event.getObject().getCapability(PathStriderProvider.PATH_STRIDER).ifPresent(pathStrider -> {
+                    pathStrider.setPlayer((Player)event.getObject());
+                });
             }
         }
     }
@@ -37,8 +38,8 @@ public class ServerEvents{
             event.getEntity().getCapability(PathStriderProvider.PATH_STRIDER).ifPresent(newStore -> {
 
                 //Restores previous capability and passive stat buffs
-                newStore.copyFrom(oldStore);
-                newStore.activatePathPassive(event.getEntity());
+                newStore.copyFrom(oldStore, event.getEntity());
+                newStore.activatePathPassive();
             });
         });
         event.getOriginal().invalidateCaps();
@@ -50,28 +51,26 @@ public class ServerEvents{
     }
 
     //Runs on the player every tick
-    @SubscribeEvent
+    /*@SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event){
         if(event.side == LogicalSide.SERVER){
             event.player.getCapability(PathStriderProvider.PATH_STRIDER).ifPresent(pathStrider -> {
-                /*if(event.player.getRandom().nextFloat() < 0.005f){   //On average every 10s
-                    event.player.sendSystemMessage(Component.literal(pathStrider.getPath()));
-                    //pathStrider.setPath("abundance");
-                    pathStrider.pathPassive(event.player);
-                }*/
+                if(event.player.getRandom().nextFloat() < 0.005f){   //On average every 10s
+                    //enter code here
+                }
             });
         }
-    }
+    }*/
 
     //Runs when a player joins the world. Unsure if needed
-    /*@SubscribeEvent
+    @SubscribeEvent
     public static void onPlayerJoinWorld(EntityJoinLevelEvent event){
         if(!event.getLevel().isClientSide){
             if(event.getEntity() instanceof ServerPlayer player){
                 player.getCapability(PathStriderProvider.PATH_STRIDER).ifPresent(pathStrider -> {
-                    ClientServerCommunications.sendToClient(new PathDataSynchronization(pathStrider.getData()), player);
+                    pathStrider.setPlayer((Player) event.getEntity());
                 });
             }
         }
-    }*/
+    }
 }

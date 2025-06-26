@@ -5,5 +5,12 @@
 
   "creativetab.hsrcombat_tab": "HSR Craft Combat",
   "creativetab.hsrconsumable_tab": "HSR Craft Consumables",
-  "creativetab.hsrblock_tab": "HSR Craft Blocks"
+  "creativetab.hsrblock_tab": "HSR Craft Blocks",
+
+  "key.category.hsr_craft.hsr_combat": "HSR Craft Combat",
+  "key.hsr_craft.basic_attack": "Basic Attack",
+  "key.hsr_craft.path_skill": "Path Skill",
+  "key.hsr_craft.skill": "Skill",
+  "key.hsr_craft.technique": "Technique",
+  "key.hsr_craft.ultimate": "Ultimate"
 }

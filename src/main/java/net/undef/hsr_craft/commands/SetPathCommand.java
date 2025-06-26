@@ -42,10 +42,10 @@ public class SetPathCommand{
 
         if(Arrays.asList(PathStrider.validPaths).contains(StringArgumentType.getString(commandSourceStackCommandContext, "Path"))) {
 
-            pathstrider.get().changePath(player, StringArgumentType.getString(commandSourceStackCommandContext, "Path"));
+            pathstrider.get().changePath(StringArgumentType.getString(commandSourceStackCommandContext, "Path"));
 
             if(!StringArgumentType.getString(commandSourceStackCommandContext, "Path").equals("none")) {
-                pathstrider.get().changePathLevel(player, IntegerArgumentType.getInteger(commandSourceStackCommandContext, "Level"));
+                pathstrider.get().changePathLevel(IntegerArgumentType.getInteger(commandSourceStackCommandContext, "Level"));
             }
 
             return 1;

@@ -1,11 +1,8 @@
 package net.undef.hsr_craft.player;
 
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.undef.hsr_craft.networking.ClientServerCommunications;
-import net.undef.hsr_craft.networking.packet.S2CPathDataSynchronization;
 
 public class PathStrider{
 
@@ -14,12 +11,18 @@ public class PathStrider{
                                         "elation", "voracity", "beauty", "permanence", "propagation",
                                         "enigmata", "equilibrium", "finality"};
     public static final String[] validCharacters = {"none"};
+
+    private Player player;
     private String path = "none";
     private int pathLevel = 0;
     private String character = "none";
 
     public PathStrider(){
         //Empty for now
+    }
+
+    public void setPlayer(Player player){
+        this.player = player;
     }
 
     public void setPath(String path){
@@ -34,6 +37,10 @@ public class PathStrider{
         this.character = character;
     }
 
+    public Player getPlayer(){
+        return this.player;
+    }
+
     public String getPath(){
         return this.path;
     }
@@ -46,14 +53,11 @@ public class PathStrider{
         return this.character;
     }
 
-    public String getData(){
-        return this.path + " " + Integer.toString(this.pathLevel) + " " + this.character;
-    }
-
-    public void copyFrom(PathStrider pathStrider){
-        setPath(pathStrider.getPath());
-        setPathLevel(pathStrider.getPathLevel());
-        setCharacter(pathStrider.getCharacter());
+    public void copyFrom(PathStrider pathStrider, Player newPlayer){
+        this.setPath(pathStrider.getPath());
+        this.setPathLevel(pathStrider.getPathLevel());
+        this.setCharacter(pathStrider.getCharacter());
+        this.setPlayer(player);
     }
 
     public void saveNBTData(CompoundTag nbt){
@@ -69,29 +73,27 @@ public class PathStrider{
     }
 
     //Change path
-    public void changePath(Player player, String newPath){
-        deactivatePathPassive(player);
-        setPath(newPath);
-        activatePathPassive(player);
-        ClientServerCommunications.sendToClient(new S2CPathDataSynchronization(this.getPath(), (byte) this.getPathLevel(), this.getCharacter()), (ServerPlayer) player);
+    public void changePath(String newPath){
+        this.deactivatePathPassive();
+        this.setPath(newPath);
+        this.activatePathPassive();
     }
 
     //Change level
-    public void changePathLevel(Player player, int newLevel){
-        deactivatePathPassive(player);
-        setPathLevel(newLevel);
-        activatePathPassive(player);
-        ClientServerCommunications.sendToClient(new S2CPathDataSynchronization(this.getPath(), (byte) this.getPathLevel(), this.getCharacter()), (ServerPlayer) player);
+    public void changePathLevel(int newLevel){
+        this.deactivatePathPassive();
+        this.setPathLevel(newLevel);
+        this.activatePathPassive();
     }
 
     //Reloads passive path buffs
-    public void reloadPathPassive(Player player){
-        deactivatePathPassive(player);
-        activatePathPassive(player);
+    public void reloadPathPassive(){
+        this.deactivatePathPassive();
+        this.activatePathPassive();
     }
 
     //Gives the player any passive stat boosts associated with their path
-    public void activatePathPassive(Player player){
+    public void activatePathPassive(){
         switch (getPath()){
             case "destruction":
                 //Destruction code
@@ -119,8 +121,8 @@ public class PathStrider{
 
             case "abundance":
                 //Abundance code
-                player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(player.getAttribute(Attributes.MAX_HEALTH).getValue() + 10); //temp
-                player.heal(10); //temp
+                this.player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(this.player.getAttribute(Attributes.MAX_HEALTH).getValue() + 10); //temp
+                this.player.heal(10); //temp
                 break;
 
             case "remembrance":
@@ -165,7 +167,7 @@ public class PathStrider{
         }
     }
 
-    public void deactivatePathPassive(Player player){
+    public void deactivatePathPassive(){
         switch (getPath()){
             case "destruction":
                 //Destruction code
@@ -193,8 +195,8 @@ public class PathStrider{
 
             case "abundance":
                 //Abundance code
-                player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(player.getAttribute(Attributes.MAX_HEALTH).getValue() - 10); //temp
-                player.setHealth(player.getHealth() - 10); //temp
+                this.player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(this.player.getAttribute(Attributes.MAX_HEALTH).getValue() - 10); //temp
+                this.player.setHealth(this.player.getHealth() - 10); //temp
                 break;
 
             case "remembrance":
