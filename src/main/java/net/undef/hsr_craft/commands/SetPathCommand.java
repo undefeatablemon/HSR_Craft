@@ -14,7 +14,6 @@ import net.minecraft.world.entity.player.Player;
 import net.undef.hsr_craft.player.PathStrider;
 import net.undef.hsr_craft.player.PathStriderProvider;
 
-import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -40,7 +39,7 @@ public class SetPathCommand{
         AtomicReference<PathStrider> pathstrider = new AtomicReference<>();
         player.getCapability(PathStriderProvider.PATH_STRIDER).ifPresent(pathstrider::set);
 
-        if(Arrays.asList(PathStrider.validPaths).contains(StringArgumentType.getString(commandSourceStackCommandContext, "Path"))) {
+        if(Arrays.asList(PathStrider.VALID_PATHS).contains(StringArgumentType.getString(commandSourceStackCommandContext, "Path"))) {
 
             pathstrider.get().changePath(StringArgumentType.getString(commandSourceStackCommandContext, "Path"));
 

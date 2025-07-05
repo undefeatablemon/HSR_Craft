@@ -6,21 +6,24 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 import net.undef.hsr_craft.HSRcraft;
 import net.undef.hsr_craft.client.KeyBindings;
 import net.undef.hsr_craft.networking.ClientServerCommunications;
 import net.undef.hsr_craft.networking.packet.*;
+import net.undef.hsr_craft.player.PathStriderProvider;
 
 public class ClientEvents {
 
     @Mod.EventBusSubscriber(modid = HSRcraft.MOD_ID, value = Dist.CLIENT)
     public static class ClientForgeEvents{
 
+        //Called when a keybind is pressed
         @SubscribeEvent
         public static void onKeyPressed(InputEvent.Key event){
-            //Called when a keybind is pressed
 
             if(KeyBindings.BASIC_ATTACK_KEY.consumeClick()) { //consumeClick is tap, there are other methods (ex. holding down key)
                 ClientServerCommunications.sendToServer(new C2SPlayerBasicAttack());
@@ -36,6 +39,14 @@ public class ClientEvents {
             }
             else if(KeyBindings.ULTIMATE_KEY.consumeClick()) { //consumeClick is tap, there are other methods (ex. holding down key)
                 ClientServerCommunications.sendToServer(new C2SPlayerUltimate());
+            }
+        }
+
+
+        @SubscribeEvent
+        public static void playerTick(TickEvent.PlayerTickEvent event) {
+            if(event.side == LogicalSide.SERVER) {
+
             }
         }
     }

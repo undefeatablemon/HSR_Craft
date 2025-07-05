@@ -12,7 +12,7 @@ public class GetPathCommand {
 
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher){
 
-        dispatcher.register(Commands.literal("getClientPathData")
+        dispatcher.register(Commands.literal("getPathData")
                 .requires(commandSourceStack -> commandSourceStack.hasPermission(0))
                         .executes(GetPathCommand::printClientData)
         );
